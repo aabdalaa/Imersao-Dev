@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflixo</title>
+    <style>
+        body {
+            font-family: "Roboto Mono", monospace;
+            text-align: center;
+            background-image: url("https://caelum-online-public.s3.amazonaws.com/assets-imersaodev/background-aluraflix.png");
+            background-color: #000000;
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            }
+
+        .page-title {
+            color: #ffffff;
+            margin: 0 0 5px;
+            }
+
+        .page-subtitle {
+            color: #ffffff;
+            margin-top: 5px;
+            }
+
+        .page-logo {
+            width: 200px;
+            }
+
+        .alura-logo {
+            width: 40px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            }
+
+        body > img {
+            margin: 0 10px;
+            }
+
+        img {
+            max-height: 250px;
+            }
+        #adicionarFilme {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">
+          Aluraflix
+        </h1>
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-aluraflix.svg" class="page-logo" alt="">
+        <button id="adicionarFilme">Adicionar Filme</button>
+    </div>
+    <div id="listaFilmes" class="container"></div>
+    <a href="https://alura.com.br/" target="_blank">
+        <img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="" class="alura-logo">
+    </a>
+    <script>
+        var listafilmes = JSON.parse(localStorage.getItem("listaFilmes")) || [
+        "https://i.pinimg.com/736x/2b/66/d7/2b66d7d42491fec01903b09828496dcb.jpg",
+        "https://gekkougear.files.wordpress.com/2015/03/g6100000649061.jpg",
+        "https://i.imgur.com/s22QNCG.jpg",
+        "https://cdn.awsli.com.br/2500x2500/838/838417/produto/200246994/tmpdragonballedicaodefinitiva12-e73802d41c.jpg",
+        "https://i0.wp.com/blogbbm.com/wp-content/uploads/2016/03/the-seven-deadly-sins-13.jpg",
+        "https://i0.wp.com/ptanime.com/wp-content/uploads/2019/11/Capa-Manga-One-Punch-Man-Volume-21-Revelada.jpg",
+        "https://m.media-amazon.com/images/I/71+ELXOb51S._AC_UF1000,1000_QL80_.jpg",
+        "https://i0.wp.com/www.genkidama.com.br/gyabbo/files/2013/01/2-Saint-Seiya-Cavaleiros-Do-Zodíaco-Jump-1986.jpg",
+        "https://jbchost.com.br/editorajbc/wp-content/uploads/2018/03/FairyTail-63-Capa_p.jpg",
+        "https://upload.wikimedia.org/wikipedia/pt/f/fb/Capa_do_primeiro_volume_do_mang%C3%A1_Deatte_5-byou_de_Battle.jpg",
+        "https://i.pinimg.com/736x/a9/7a/b5/a97ab5d688cc883042ffa96bfd258ac6.jpg",
+        "https://pbs.twimg.com/media/E9BJq0KWEA06DYM.jpg",
+        "https://jbchost.com.br/editorajbc/wp-content/uploads/2022/02/blue-exorcist-26-capa-p.jpg"
+        ];
+
+        var botaoAdicionar = document.getElementById("adicionarFilme");
+        var listaFilmesContainer = document.getElementById("listaFilmes");
+
+        botaoAdicionar.addEventListener("click", function () {
+        var urlImagem = prompt("Digite a URL da imagem:");
+
+        if (urlImagem) {
+            listafilmes.push(urlImagem);
+            var novaImagem = document.createElement("img");
+            novaImagem.src = urlImagem;
+            novaImagem.classList.add("filme");
+            listaFilmesContainer.appendChild(novaImagem);
+            localStorage.setItem("listaFilmes", JSON.stringify(listafilmes));
+        }
+        });
+
+        var filmesAdicionados = []; // Array auxiliar para armazenar os filmes já adicionados
+
+        var i = 0;
+        while (i < listafilmes.length) {
+        var filmeAtual = listafilmes[i];
+
+        if (!filmesAdicionados.includes(filmeAtual)) {
+            var novaImagem = document.createElement("img");
+            novaImagem.src = filmeAtual;
+            novaImagem.classList.add("filme");
+            listaFilmesContainer.appendChild(novaImagem);
+            filmesAdicionados.push(filmeAtual); // Adiciona o filme ao array auxiliar
+        }
+
+        i++;
+        }
+    </script>
+</body>
+</html>

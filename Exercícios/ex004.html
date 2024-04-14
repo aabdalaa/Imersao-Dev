@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperatura</title>
+    <style>
+        body {
+            font-family: "Roboto Mono", monospace;
+            text-align: center;
+            background-image: url("https://caelum-online-public.s3.amazonaws.com/assets-imersaodev/Background.png");
+            background-color: #000000;
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            height: 100vh;
+            }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            }
+
+        .page-title {
+            color: #ffffff;
+            margin: 0 0 5px;
+            }
+
+        .page-subtitle {
+            color: #ffffff;
+            margin-top: 5px;
+            }
+
+        .page-logo {
+            width: 200px;
+            }
+
+        .alura-logo {
+            width: 40px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            }
+
+        body > img {
+            margin: 0 10px;
+            }
+
+        img {
+            max-height: 250px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">
+          Conversor de temperatura
+        </h1>
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-aluraflix.svg" class="page-logo" alt="">
+    </div>
+    <a href="https://alura.com.br/" target="_blank">
+        <img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="" class="alura-logo">
+        <img src="https://portal.inmet.gov.br/uploads/icones/temperatura_maxima.png">
+    </a>
+    <script>
+        var temp = prompt(
+        "Qual medida deseja que seja convertida ?" +
+            "\n" +
+            "\n1 - Fahrenheit" +
+            "\n2 - Celsius" +
+            "\n3 - Kelvin"
+        );
+
+        var quant = prompt("Quantos graus você quer converter? ");
+
+        if (temp === "1") {
+        var temperaturaCelsius = ((quant - 32) * 5) / 9;
+        var temperaturaKelvin = ((quant - 32) * 5) / 9 + 273.15;
+        alert(
+            "A temperatura em Celsius é: " +
+            temperaturaCelsius.toFixed(2) +
+            "\nA temperatura em Kelvin é: " +
+            temperaturaKelvin.toFixed(2)
+        );
+        } else if (temp === "2") {
+        var temperaturaFahrenheit = (quant * 9) / 5 + 32;
+        var temperaturaKelvin = parseFloat(quant) + 273.15;
+        alert(
+            "A temperatura em Fahrenheit é: " +
+            temperaturaFahrenheit.toFixed(2) +
+            "\nA temperatura em Kelvin é: " +
+            temperaturaKelvin.toFixed(2)
+        );
+        } else if (temp === "3") {
+        var temperaturaCelsius = quant - 273.15;
+        var temperaturaFahrenheit = (quant * 9) / 5 - 459.67;
+        alert(
+            "A temperatura em Celsius é: " +
+            temperaturaCelsius.toFixed(2) +
+            "\nA temperatura em Fahrenheit é: " +
+            temperaturaFahrenheit.toFixed(2)
+        );
+        } else if (temp >= 4) {
+        alert(
+            "O número dígitado não está correto, tente recarregar a página e tente novamente!"
+        );
+        }
+    </script>
+</body>
+</html>
